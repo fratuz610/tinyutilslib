@@ -17,7 +17,18 @@ import java.util.Locale;
 public class TimeFormatUtils {
 
   /**
-  * Simple wrapper for the SimpleDateFormatter class
+  * Simple wrapper for the SimpleDateFormat class with a default date format of yyyy-MM-dd HH:mm:ss
+  *
+  * @param ts the source timestamp
+  * @return the formatted String representation of the timestamp
+  */
+  public static String formatTimestamp(long ts) {
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    return formatter.format(new Date(ts));
+  }
+  
+  /**
+  * Simple wrapper for the SimpleDateFormat class
   *
   * @param ts the source timestamp
   * @param format the format string used to convert the timestamp into a string
