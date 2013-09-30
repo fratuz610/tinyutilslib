@@ -36,12 +36,12 @@ public class ExceptionUtils {
    
   public static String getFullExceptionInfo(Throwable e){
 
-    String info = e.getClass().getSimpleName() + " : " + e.getMessage();
+    String ret = e.getClass().getSimpleName() + " : " + e.getMessage() + "\nStack trace:\n" + formatStackTrace(e.getStackTrace());
     
     if(e.getCause() != null)
-      return info + " CAUSED BY: " + e.getCause().getClass().getSimpleName() + " : " + e.getCause().getMessage() + "\nStack trace:\n" + formatStackTrace(e.getCause().getStackTrace());
-    else
-      return e.getClass().getSimpleName() + " : " + e.getMessage() + "\nStack trace:\n" + formatStackTrace(e.getStackTrace());
+      ret += "\n CAUSED BY: " + getFullExceptionInfo(e.getCause());
+    
+    return ret;
   }
   
   public static String getStackTraceAsString(Throwable e){
